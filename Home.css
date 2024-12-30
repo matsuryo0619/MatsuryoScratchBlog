@@ -5,6 +5,13 @@ header {
   background-color: #855cd6;
   align-items: center;
   position: fixed;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  height: 1000px;
 }
 
 .title {
@@ -15,8 +22,4 @@ header {
   list-style: none;
   display: inline-block;
   padding: 10px;
-}
-
-body {
-  height: 1000px;
 }
