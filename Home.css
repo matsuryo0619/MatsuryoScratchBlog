@@ -1,31 +1,45 @@
 header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   height: 60px;
   background-color: #855cd6;
   position: fixed;
+  top: 0;
   margin: 0;
-  padding: 0;
+  padding: 0 20px;
 }
 
 .header_container {
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
 body {
   margin: 0;
+  padding: 0;
   height: 1000px;
+  font-family: Arial, sans-serif;
 }
 
 .header_list {
   list-style: none;
   display: inline-block;
+  margin: 0 10px;
   padding: 10px;
-  font-color: white;
+  color: white;
   font-weight: 500;
+}
+
+.header_list a {
+  text-decoration: none;
+  color: white;
+}
+
+.header_list a:hover {
+  text-decoration: underline;
 }
 
 #icon_img {
