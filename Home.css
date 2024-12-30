@@ -26,10 +26,10 @@ body {
 
 #icon_img {
   transition: transform 0.3s ease;
-  width: 50%;
+  width: auto;
   height: 50%;
 }
 
 #icon_img:hover {
-  transform: scale(1.5);
+  transform: scale(1.1);
 }
