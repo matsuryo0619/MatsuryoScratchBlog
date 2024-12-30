@@ -1,21 +1,23 @@
 header {
   display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 60px;
   background-color: #855cd6;
-  align-items: center;
   position: fixed;
   margin: 0;
   padding: 0;
 }
 
+.header_container {
+  display: flex;
+  align-items: center;
+}
+
 body {
   margin: 0;
   height: 1000px;
-}
-
-.title {
-  margin-right: auto;
 }
 
 .header_list {
@@ -33,4 +35,4 @@ body {
 #icon_img:hover {
   transform: scale(1.1);
   cursor: pointer;
-},
+}
