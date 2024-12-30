@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  document.getElemtnByID("icon_img").addEventListener("click", function () {
-    window.open("https://scratch.mit.edu", "_blank");
-  });
-});
+        document.getElementById("icon_img").addEventListener("click", function () {
+          window.open("https://example.com", "_blank");
+        });
+      });
