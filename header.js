@@ -1,15 +1,3 @@
-document.addEventListener("DOMContentLoaded", function () {
-  // 既存の要素を保持しながらHTMLを追加
-  document.body.insertAdjacentHTML('beforeend', `
-    <header　id="header">
-      <img src="Logo.png" id="icon_img">
-      <ul id="header_menu">
-        <li class="header_list" data-url="https://example.com/home">ホーム</li>
-        <li class="header_list" data-url="https://example.com/about">このサイトについて</li>
-      </ul>
-    </header>
-  `);
-
   // メニュー項目のクリックイベントを追加
   document.querySelectorAll(".header_list").forEach(item => {
     item.addEventListener("click", function () {
