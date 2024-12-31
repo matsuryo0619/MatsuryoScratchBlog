@@ -43,7 +43,7 @@ body {
 .header_list:hover {
   text-decoration: underline;
   cursor: pointer;
-  background-color: #6c4daa
+  background-color: #6c4daa;
 }
 
 #icon_img {
