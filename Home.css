@@ -36,6 +36,7 @@ body {
 .header_list {
   text-decoration: none;
   color: white;
+  height: 60px;
 }
 
 .header_list:hover {
