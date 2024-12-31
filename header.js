@@ -14,6 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // アイコンのクリックイベント
   document.getElementById("icon_img").addEventListener("click", function () {
-    window.location.href = "https://scratch.mit.edu";
+    window.open = "https://scratch.mit.edu";
   });
 });
