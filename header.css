@@ -11,6 +11,13 @@ header {
   padding: 0 20px;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  height: 1000px;
+  font-family: Arial, sans-serif;
+}
+
 .header_container {
   display: flex;
   align-items: center;
