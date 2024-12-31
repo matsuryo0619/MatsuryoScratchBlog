@@ -7,13 +7,13 @@ document.addEventListener("DOMContentLoaded", function () {
     item.addEventListener("click", function () {
       const url = this.getAttribute("data-url");
       if (url) {
-        window.open(url); // 新しいタブでURLを開く
+        window.location.href = url; // 現在のタブでURLを開く
       }
     });
   });
 
   // アイコンのクリックイベント
   document.getElementById("icon_img").addEventListener("click", function () {
-    window.open("https://scratch.mit.edu", "_blank");
+    window.location.href = "https://scratch.mit.edu";
   });
 });
