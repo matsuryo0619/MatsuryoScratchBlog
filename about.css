@@ -19,4 +19,5 @@ p[id="header_blank"] {
 
 span[class="main_text"] {
   text-decoration: underline #edb600;
+  text-decoration-thickness: 2.5px;
 }
