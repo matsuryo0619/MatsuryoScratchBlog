@@ -17,13 +17,6 @@ header {
   width: 100%;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  height: 1000px;
-  font-family: Arial, sans-serif;
-}
-
 .header_list {
   list-style: none;
   display: inline-block;
