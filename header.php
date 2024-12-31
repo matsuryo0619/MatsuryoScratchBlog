@@ -3,8 +3,8 @@
   <head>
     <title>Scratchブログ</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="Home.css">
-    <script src="Home.js"></script>
+    <link rel="stylesheet" href="header.css">
+    <script src="header.js"></script>
   </head>
   <body>
     <header>
