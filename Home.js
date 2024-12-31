@@ -4,4 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-function 
+function new(Page) {
+  const Page_URL = "https://matsuryo0619.github.io/MatsuryoScratchBlog/" + Page;
+  window.open(Page_URL);
+}
