@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // `<body>`内の一番上に新しい内容を追加
-  document.body.insertAdjacentHTML('afterbegin', `
+  // 既存の要素を保持しながらHTMLを追加
+  document.body.insertAdjacentHTML('beforeend', `
     <header>
       <img src="Logo.png" id="icon_img">
       <ul id="header_menu">
-        <li class="header_list" data-url="Home.html">ホーム</li>
-        <li class="header_list" data-url="about.html">このサイトについて</li>
+        <li class="header_list" data-url="https://example.com/home">ホーム</li>
+        <li class="header_list" data-url="https://example.com/about">このサイトについて</li>
       </ul>
     </header>
   `);
