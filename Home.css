@@ -36,12 +36,14 @@ body {
 .header_list {
   text-decoration: none;
   color: white;
-  margin: 30px;
+  margin-bottom: 9px;
+  margin-top: 9px;
 }
 
 .header_list:hover {
   text-decoration: underline;
-  cursor: default;
+  cursor: pointer;
+  background-color: #6c4daa
 }
 
 #icon_img {
