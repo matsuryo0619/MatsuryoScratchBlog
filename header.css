@@ -31,6 +31,8 @@ body {
   padding: 10px;
   color: white;
   font-weight: 500;
+  position: relative;
+  right: 5%;
 }
 
 .header_list {
@@ -56,4 +58,3 @@ body {
   transform: scale(1.1);
   cursor: pointer;
 }
-
