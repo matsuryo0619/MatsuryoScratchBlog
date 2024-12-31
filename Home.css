@@ -33,12 +33,12 @@ body {
   font-weight: 500;
 }
 
-.header_list a {
+.header_list {
   text-decoration: none;
   color: white;
 }
 
-.header_list a:hover {
+.header_list:hover {
   text-decoration: underline;
 }
 
