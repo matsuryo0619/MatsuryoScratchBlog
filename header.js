@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   // 既存の要素を保持しながらHTMLを追加
   document.body.insertAdjacentHTML('beforeend', `
-    <header>
+    <header　id="header">
       <img src="Logo.png" id="icon_img">
       <ul id="header_menu">
         <li class="header_list" data-url="https://example.com/home">ホーム</li>
