@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     item.addEventListener("click", function () {
       const url = this.getAttribute("data-url");
       if (url) {
-        window.open(url, "_blank"); // 新しいタブでURLを開く
+        window.open(url); // 新しいタブでURLを開く
       }
     });
   });
