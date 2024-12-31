@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     item.addEventListener("click", function () {
       const url = this.getAttribute("data-url");
       if (url) {
-        window.location.href = url; // 現在のタブでURLを開く
+        window.location.href = "https://matsuryo0619.github.io/MatsuryoScratchBlog/" + url; // 現在のタブでURLを開く
       }
     });
   });
