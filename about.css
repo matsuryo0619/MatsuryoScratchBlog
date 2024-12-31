@@ -13,9 +13,10 @@ p[id="header_blank"] {
 }
 
 .main_text {
-  font-weight: 500;
+  font-weight: 700;
+  display: inline;
 }
 
-.under_line {
+span[class="main_text"] {
   text-decoration: underline #edb600;
 }
