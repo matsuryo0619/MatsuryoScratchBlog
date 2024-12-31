@@ -56,3 +56,9 @@ body {
   transform: scale(1.1);
   cursor: pointer;
 }
+
+.header_button {
+  padding: 0px;
+  margin: 0px;
+  width: 18px;
+  height: auto;
