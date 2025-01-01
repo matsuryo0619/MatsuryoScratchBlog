@@ -43,7 +43,6 @@ body {
 }
 
 .header_list:hover {
-  text-decoration: underline;
   cursor: pointer;
   background-color: #6c4daa;
 }
