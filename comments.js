@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadSplSheet = async () => {
       try {
         const response = await fetch(`https://docs.google.com/spreadsheets/d/${uniq.splSheetID}/gviz/tq?tqx=out:csv&tq=${query}&headers=0`);
+        console.log('https://docs.google.com/spreadsheets/d/${uniq.splSheetID}/gviz/tq?tqx=out:csv&tq=${query}&headers=0');
         if (!response.ok) throw new Error('Failed to fetch comments');
 
         const csv = await response.text();
