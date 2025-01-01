@@ -17,7 +17,7 @@ function test(wcheck) {
 	return submitted=!0;
 }
 
-d3.csv("https://docs.google.com/spreadsheets/d/1FAIpQLSeLGzXa50rQA9cNM4ixsWEGfMlDxF8Y4WCrHn6EvHeZVY_B-Q/export?format=csv&range=A3:D", function(error, data){
+d3.csv("https://docs.google.com/spreadsheets/d/1RaAzpuwjpq2rCTl3vcjZeY2gTDY8IEYkJHxfyVE_Pjw/export?format=csv&range=A3:D", function(error, data){
 	var text = "";
 	for(var i=0; i<data.length; i++){
 		text += i+1 + " 名前: <a href=\"mailto:" + data[i].Mail + "\">" + data[i].Name + "</a> " + data[i].Timestamp + "<pre>" + data[i].Comments + "</pre>";
