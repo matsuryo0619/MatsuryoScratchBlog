@@ -1,3 +1,11 @@
+d3.csv("https://docs.google.com/spreadsheets/d/1RaAzpuwjpq2rCTl3vcjZeY2gTDY8IEYkJHxfyVE_Pjw/export?format=csv&range=A3:D", function(error, data){
+	var text = "";
+	for(var i=0; i<data.length; i++){
+		text += i+1 + " 名前: <a href=\"mailto:" + data[i].Mail + "\">" + data[i].Name + "</a> " + data[i].Timestamp + "<pre>" + data[i].Comments + "</pre>";
+	}
+	d3.select("#comments").html(text);
+});
+
 var NGComments = ["死ね","バカ",".exe"]; // 簡易的なNGワードの設定
 var regex = new RegExp(NGComments.join("|"));
 function test(wcheck) {
@@ -16,11 +24,3 @@ function test(wcheck) {
 	}
 	return submitted=!0;
 }
-
-d3.csv("https://docs.google.com/spreadsheets/d/1RaAzpuwjpq2rCTl3vcjZeY2gTDY8IEYkJHxfyVE_Pjw/export?format=csv&range=A3:D", function(error, data){
-	var text = "";
-	for(var i=0; i<data.length; i++){
-		text += i+1 + " 名前: <a href=\"mailto:" + data[i].Mail + "\">" + data[i].Name + "</a> " + data[i].Timestamp + "<pre>" + data[i].Comments + "</pre>";
-	}
-	d3.select("#comments").html(text);
-});
