@@ -6,14 +6,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //uniqは固有の値なので変更してください
     const uniq = { 
-      gglFormID: 'GoogleフォームのID',
-      splSheetID: 'スプレッドシートのID',
-      urlKey: 'urlのキー',
-      titleKey: 'titleのキー',
-      nameKey: 'nameのキー',
-      commentKey: 'commnetのキー',
-      idKey: 'idのキー',
-      replyIdKey: 'reply idのキー'
+      gglFormID: '1Y2EujtjEOiWzKzM1cucV7Bjk4RFZYuhMPFYVVAMFdUo',
+      splSheetID: '1FAIpQLSdE3JNLAlS9Hlmz90XxjgI3EtgXN7jXlSQyN9jOvqqLag03Ow',
+      urlKey: '1652999717',
+      titleKey: '1978816429',
+      nameKey: '1983997277',
+      commentKey: '1396591484',
+      idKey: '1712718090',
+      replyIdKey: '1078288063'
     }
 
     const FORM = document.getElementById('form');
