@@ -1,125 +1,124 @@
-共有する
-
-
-あなた:
+//HTMLが読み込まれたら実行
 document.addEventListener('DOMContentLoaded', () => {
   const CMNT = document.body.querySelector('.comment');
-
+  //commentクラスが存在したら
   if (CMNT) {
-    const uniq = {
-      gglFormID: '15BRzrChEWh47OBT9QzJxodNhm0FdTIp3Ms57EEVqPXU',
-      splSheetID: '1FAIpQLSdE3JNLAlS9Hlmz90XxjgI3EtgXN7jXlSQyN9jOvqqLag03Ow',
+
+    //uniqは固有の値なので変更してください
+    const uniq = { 
+      gglFormID: '1FAIpQLSdE3JNLAlS9Hlmz90XxjgI3EtgXN7jXlSQyN9jOvqqLag03Ow',
+      splSheetID: '15BRzrChEWh47OBT9QzJxodNhm0FdTIp3Ms57EEVqPXU',
       urlKey: '1652999717',
       titleKey: '1978816429',
       nameKey: '1983997277',
       commentKey: '1396591484',
       idKey: '1712718090',
-      replyIdKey: '1078288063'
-    };
+      replyIdKey: '1078288063'T
+    }
 
     const FORM = document.getElementById('form');
 
-    // Add form elements
-    FORM.innerHTML = 
-      <input name="name" placeholder="名前" required>
-      <textarea name="comment" placeholder="コメント" rows="10" maxlength="400" required></textarea>
-      <div>
-        <button type="button">送信</button>
-        <span class="anchor"></span>
-        <input type="email" name="email" style="display:none;" title="スパム用">
-      </div>;
+    //コメントに必要な要素をformに追加（スパム対策）
+    FORM.innerHTML = '<input name="name" placeholder="名前"><textarea name="comment" placeholder="コメント" rows="10" maxlength="400"></textarea><div><button type="button">送信</button><span class="anchor"></span><input type="email" name="email" style="display:none;" title="スパム用"></div>';
 
-    const escapeHTML = str => str.replace(/[&<>"]/g, char => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[char]));
+    //HTML特殊文字をエスケープ
+    const escapeHTML = (str) => {
+      return str.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#039;');
+    }
 
+    //ランダムなアルファベット8文字を生成（ID用）
     const createRandomID = () => {
-      return Array.from({ length: 8 }, () => 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'[Math.floor(Math.random() * 52)]).join('');
-    };
+      let chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+      let randStr = '';
+      for (let i = 0; i < 8; i++) randStr += chars.charAt(Math.floor(Math.random() * chars.length));
+      return randStr;
+    }
 
-    const splCsvToArr = csv => csv
-      .slice(1, -1)
-      .split('"\n"')
-      .map(row => row.split('","').map(col => col.replace(/""/g, '"')));
+    //スプレッドシートのCSVを2次元配列に変換
+    const splCsvToArr = (csv) => {
+      const arr = [];
+      const rem = csv.substring(1, csv.length - 1);
+      const rows = rem.split('"\n"');
+      for (const row of rows) arr.push(row.split('","'));
+      for (const num of [2,3]) for (const col of arr) col[num] = col[num].replaceAll('""', '"');
+      return arr;
+    }
 
     const LIST = CMNT.querySelector('.list');
     const INFO = CMNT.querySelector('.info');
     const ANCH = FORM.querySelector('.anchor');
     const url = location.pathname;
-    const query = encodeURIComponent(select A, D, E, F, G where B = '${url}' order by A);
+    const query = encodeURIComponent(`select A, D, E, F, G where B = '${url}' order by A`); //Google Query関数を参照
 
+    //スプレッドシートを読み込む
     const loadSplSheet = async () => {
-      try {
-        const response = await fetch(https://docs.google.com/spreadsheets/d/${uniq.splSheetID}/gviz/tq?tqx=out:csv&tq=${query}&headers=0);
-        if (!response.ok) throw new Error('Failed to fetch comments');
-
+      const response = await fetch(`https://docs.google.com/spreadsheets/d/${uniq.splSheetID}/gviz/tq?tqx=out:csv&tq=${query}&headers=0`); //headers=0で最初の列を除外
+      if (response.ok) {
         const csv = await response.text();
-        const data = splCsvToArr(csv);
+        if (csv) {
+          const data = splCsvToArr(csv);
+          LIST.innerHTML = '';
 
-        LIST.innerHTML = data.length ? data.map((row, i) => {
-          const reply = row[4] ?
-            (document.getElementById(row[4]) ? <a class="reply" href="#${row[4]}">>>${document.getElementById(row[4]).dataset.num}</a> : '<small class="reply">>>返信元のコメントは削除されたようです...</small>')
-            : '';
-
-          return <li id="${row[3]}" data-num="${i + 1}">
-            <div>${i + 1}.<b>${escapeHTML(row[1])}</b><small>${row[0]}</small><a href="#form">返信</a></div>
-            ${reply}
-            <pre>${escapeHTML(row[2])}</pre>
-          </li>;
-        }).join('') : '<div style="text-align:center;">コメントはまだありません</div>';
-
-        LIST.querySelectorAll('li > div > a').forEach(a => {
-          a.onclick = e => {
-            const li = e.target.closest('li');
-            ANCH.innerHTML = <i title="アンカーリンクを削除">Ⓧ</i><a href="#${li.id}" data-rep="${li.id}">>>${li.dataset.num}</a>;
-            ANCH.querySelector('i').onclick = () => ANCH.innerHTML = '';
-          };
-        });
-      } catch (error) {
-        INFO.textContent = '⚠ コメントの取得に失敗しました...時間をおいてリロードしてください。';
-      }
-    };
-
-    FORM.querySelector('button').onclick = async () => {
-      const nVal = FORM.elements['name'].value.trim();
-      const cVal = FORM.elements['comment'].value.trim();
-      const reply = FORM.querySelector('span > a')?.dataset.rep || '';
-
-      if (FORM.elements['email'].value) return console.log('スパムを検出しました');
-      if (!nVal || !cVal) return alert('⚠ 必須項目が入力されていません');
-
-      const blackWords = ['バカ', '馬鹿', '死ね', '","', '"\n"'];
-      if (blackWords.some(word => nVal.includes(word) || cVal.includes(word))) return alert('⚠ 不適切なワードが含まれています');
-
-      const thisID = createRandomID();
-      const title = encodeURIComponent(document.querySelector('h1')?.textContent || '');
-
-      FORM.querySelector('button').disabled = true;
-
-      try {
-        await fetch(https://docs.google.com/forms/d/e/${uniq.gglFormID}/formResponse, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: entry.${uniq.urlKey}=${url}&entry.${uniq.titleKey}=${title}&entry.${uniq.nameKey}=${encodeURIComponent(nVal)}&entry.${uniq.commentKey}=${encodeURIComponent(cVal)}&entry.${uniq.idKey}=${thisID}&entry.${uniq.replyIdKey}=${reply}
-        });
-
-        INFO.textContent = 'ⓘ コメント投稿中...';
-        setTimeout(async () => {
-          await loadSplSheet();
-          FORM.querySelector('button').disabled = false;
-          if (LIST.querySelector(#${thisID})) {
-            INFO.textContent = 'ⓘ コメント成功！';
-            FORM.reset();
-            ANCH.innerHTML = '';
-          } else {
-            INFO.textContent = '⚠ リロードしてコメントが正常に投稿されているか確認してください。';
+          //リストにコメントを表示
+          for (let i = 0; i < data.length; i++) {
+            let reply = '';
+            if (data[i][4]) {
+            const replyElem = document.getElementById(data[i][4]);
+            if (replyElem) reply = `<a class="reply" href="#${data[i][4]}">>>${replyElem.dataset.num}</a>`;
+            else reply = `<small class="reply">>>返信元のコメントは削除されたようです...</small>`;
+            }
+            LIST.innerHTML += `<li id="${data[i][3]}" data-num="${i+1}"><div>${i+1}.<b>${escapeHTML(data[i][1])}</b><small>${data[i][0]}</small><a href="#form">返信</a></div>${reply}<pre>${escapeHTML(data[i][2])}</pre></li>`;
           }
-        }, 2500);
-      } catch {
-        INFO.textContent = '⚠ コメントの送信に失敗しました';
-        FORM.querySelector('button').disabled = false;
-      }
-    };
 
+          //各コメントの返信をクリック
+          for (const a of LIST.querySelectorAll(`li > div > a`)) a.onclick = (e) => {
+            const li = e.target.parentNode.parentNode;
+            ANCH.innerHTML = `<i title="アンカーリンクを削除">Ⓧ</i><a href="#${li.id}" data-rep="${li.id}">>>${li.dataset.num}</a>`;
+            ANCH.querySelector('i').onclick = () => ANCH.innerHTML = '';
+          }
+
+        } else LIST.innerHTML = '<div style="text-align:center;">コメントはまだありません</div>';
+      } else INFO.textContent = '⚠ コメントの取得に失敗しました...時間をおいてリロードしてください。';
+    }
     loadSplSheet();
+
+    //送信ボタンをクリック
+    FORM.querySelector('button').onclick = async (e) => {
+      if (FORM.elements['email'].value) throw console.log('スパムを検出しました'); //罠のinputに値が入ってるとエラーになる
+      const nVal = FORM.elements['name'].value;
+      const cVal = FORM.elements['comment'].value;
+      if (!nVal) throw alert('⚠ 名前の入力が空です');
+      if (!cVal) throw alert('⚠ コメントの入力が空です');
+      const blackWords = ['バカ','馬鹿','死ね','","','"\n"']; //禁止ワードを設定（最後の2つはsplCsvToArr用）
+      if (blackWords.some((bw) => nVal.includes(bw))) throw alert('⚠ 名前に不適切なワードが含まれてます');
+      if (blackWords.some((bw) => cVal.includes(bw))) throw alert('⚠ コメントに不適切なワードが含まれてます');
+      e.target.setAttribute('disabled', 'true'); //ボタンを無効にして連続クリック防止
+      const thisID = createRandomID();
+      const title = encodeURIComponent(document.querySelector('h1').textContent); //記事のタイトルを取得
+      const reply = FORM.querySelector('span > a')?.dataset.rep ?? '';
+
+      //コメントデータをスプレッドシートに保存
+      fetch(`https://docs.google.com/forms/d/e/${uniq.gglFormID}/formResponse`, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: `entry.${uniq.urlKey}=${url}&entry.${uniq.titleKey}=${title}&entry.${uniq.nameKey}=${encodeURIComponent(nVal)}&entry.${uniq.commentKey}=${encodeURIComponent(cVal)}&entry.${uniq.idKey}=${thisID}&entry.${uniq.replyIdKey}=${reply}`
+      });
+      INFO.textContent = 'ⓘ コメント投稿中...';
+
+      // 2.5秒後にスプレッドシートを読み込んでリストに表示
+      setTimeout( async () => {
+        await loadSplSheet();
+        e.target.removeAttribute('disabled'); //ボタン復活
+        if (LIST.querySelector(`#${thisID}`)) {
+          INFO.textContent = 'ⓘ コメント成功！';
+          FORM.elements['comment'].value = '';
+          FORM.querySelector('span').innerHTML = '';
+        }
+        else INFO.textContent = '⚠ リロードしてコメントが正常に投稿されてるか確認してください。';
+      }, 2500);
+    }
   }
 });
