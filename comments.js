@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
       nameKey: '1983997277',
       commentKey: '1396591484',
       idKey: '1712718090',
-      replyIdKey: '1078288063'T
+      replyIdKey: '1078288063'
     }
 
     const FORM = document.getElementById('form');
