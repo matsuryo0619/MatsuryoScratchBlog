@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //uniqは固有の値なので変更してください
     const uniq = { 
       gglFormID: '1FAIpQLSdE3JNLAlS9Hlmz90XxjgI3EtgXN7jXlSQyN9jOvqqLag03Ow',
-      splSheetID: '15BRzrChEWh47OBT9QzJxodNhm0FdTIp3Ms57EEVqPXU',
+      splSheetID: '1cspoD348lh-B3h-n-Dl7hsIEnQ76zHoxnmU0h5SnVhA',
       urlKey: '1652999717',
       titleKey: '1978816429',
       nameKey: '1983997277',
