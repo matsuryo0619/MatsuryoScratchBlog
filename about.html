@@ -33,6 +33,8 @@
       <p>このサイトはScratch､Scratch財団には一切関係ありません</p>
     </div>
     <div class="comments">
+      <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+      <div id="comments"></div>
       <form action="https://docs.google.com/forms/d/e/1RaAzpuwjpq2rCTl3vcjZeY2gTDY8IEYkJHxfyVE_Pjw/formResponse" target="hidden_iframe" method="post" onsubmit="return test(this.wcheck.value)">
         <p><input name="entry.834403794" placeholder="名前" value="名無し" required></p>
         <p><input name="entry.91165395" placeholder="メールアドレス" type="email"></p>
@@ -40,7 +42,5 @@
         <input type="submit" id="submitbutton" value="送信">
       </form>
       <iframe onload='if(submitted){window.location="";}' id=hidden_iframe name=hidden_iframe style=display:none></iframe>
-      <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-<div id="comments"></div>
   </body>
 </html>
